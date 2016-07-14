@@ -37,7 +37,8 @@ basic 模版为 config/web.php, advanced 模版为对应入口的 config/main.ph
     'thread' => [
         'class' => 'kriss\thread\components\Thread',
         'enable' => true,
-        //'tokenValidate' => true // 是否开启 url token 验证，默认开启
+        'tokenValidate' => true, // 是否开启 url token 验证，默认开启
+        'token' => 'suiyitianxiezijidetoken', // 随意填写自己的验证 token
     ],
     ...
 ]
