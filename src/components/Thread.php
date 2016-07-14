@@ -22,14 +22,31 @@ class Thread extends Component
     public $enable = true;
 
     /**
+     * 是否开启 url 地址 token 验证
+     * 开启能够防止部分 url 端口被恶意调用
+     * @var bool
+     */
+    public $tokenValidate = true;
+
+    /**
      * 异步脚本的钩子，此处当前为Url链接
      * @var array
      */
     private $hooks = [];
 
+    /**
+     * 自动生成的 token
+     * @var string
+     */
+    private $token;
+
     public function init()
     {
         parent::init();
+
+        if ($this->tokenValidate) {
+            $this->token = substr(md5((time() . random_bytes(3))), 8, 16);
+        }
 
         register_shutdown_function(function () {
             Yii::info('start run Thread');
@@ -41,10 +58,26 @@ class Thread extends Component
     /**
      * 添加一个线程
      * @param $url
+     * @throws yii\base\ErrorException
      */
     public function addThread($url)
     {
+        if ($this->tokenValidate) {
+            if (isset($url['token'])) {
+                throw new yii\base\ErrorException('请不要在url中使用token字段，token为保留字段');
+            }
+            $url['token'] = $this->token;
+        }
         $this->hooks[] = $url;
+    }
+
+    /**
+     * 获取 token
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 
     /**

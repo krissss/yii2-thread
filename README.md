@@ -1,6 +1,6 @@
-yii2 multi thread
-=================
-yii2 multi thread with fsockopen
+# yii2 multi thread
+
+yii2 使用 fsockopen 模拟多线程操作
 
 ## 安装
 
@@ -33,10 +33,11 @@ basic 模版为 config/web.php, advanced 模版为对应入口的 config/main.ph
 
 ```php
 'components' => [
-    .....
+    ...
     'thread' => [
         'class' => 'kriss\thread\components\Thread',
         'enable' => true,
+        //'tokenValidate' => true // 是否开启 url token 验证，默认开启
     ],
     ...
 ]
@@ -65,4 +66,6 @@ public function actionSendMessage($message)
 Yii::$app->thread->addThread(['/web-thread/send-message','message'=>'hello world']);
 ```
 
-链接`['/web-thread/send-message','message'=>'hello world']`将会在本次请求脚本执行结束之前使用`fsockopen`方式进行访问
+链接`['/web-thread/send-message','message'=>'hello world']`
+将会在"本次请求脚本执行结束之前"（参考：[register_shutdown_function](http://php.net/register_shutdown_function)）
+使用`fsockopen`方式发起请求访问
