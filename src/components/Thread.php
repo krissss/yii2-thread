@@ -27,6 +27,13 @@ class Thread extends Component
      * @var bool
      */
     public $tokenValidate = true;
+    
+    /**
+     * 是否开启 url 地址 token 验证
+     * 开启能够防止部分 url 端口被恶意调用
+     * @var bool
+     */
+    public $tokenParam = 'token';    
 
     /**
      * 随意填写自己的 token
