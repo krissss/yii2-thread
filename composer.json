@@ -1,5 +1,5 @@
 {
-    "name": "nerburish/yii2-thread",
+    "name": "krissss/yii2-thread",
     "description": "yii2 multi thread with fsockopen",
     "type": "yii2-extension",
     "keywords": ["yii2","thread"],
