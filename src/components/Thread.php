@@ -27,6 +27,12 @@ class Thread extends Component
      * @var bool
      */
     public $tokenValidate = true;
+    
+    /**
+     * Token param
+     * @var string
+     */
+    public $tokenParam = 'token';    
 
     /**
      * 随意填写自己的 token

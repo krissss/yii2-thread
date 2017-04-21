@@ -19,7 +19,7 @@ class WebThreadController extends Controller
         /** @var Thread $thread */
         $thread = Yii::$app->thread;
         if ($thread->tokenValidate) {
-            $urlToken = Yii::$app->request->get('token');
+            $urlToken = Yii::$app->request->get($thread->tokenParam);
             if (!$thread->validateToken($urlToken)) {
                 throw new yii\web\ForbiddenHttpException('拒绝访问');
             }
