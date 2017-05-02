@@ -64,7 +64,7 @@ class Thread extends Component
      */
     public function addThread($url)
     {
-        Yii::info('add a thread');
+        Yii::trace('add a thread');
         if ($this->tokenValidate) {
             if (isset($url['token'])) {
                 Yii::error('token can not be a key in $url parameter');
