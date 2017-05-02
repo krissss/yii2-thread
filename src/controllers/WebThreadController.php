@@ -15,7 +15,7 @@ class WebThreadController extends Controller
 {
     public function beforeAction($action)
     {
-        Yii::info('start thread');
+        Yii::trace('start thread');
         /** @var Thread $thread */
         $thread = Yii::$app->thread;
         if ($thread->tokenValidate) {
