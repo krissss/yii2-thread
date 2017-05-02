@@ -51,9 +51,9 @@ class Thread extends Component
         parent::init();
 
         register_shutdown_function(function () {
-            Yii::info('start run Thread');
+            Yii::trace('start run Thread');
             $this->runThread();
-            Yii::info('end run Thread');
+            Yii::trace('end run Thread');
         });
     }
 
