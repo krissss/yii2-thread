@@ -66,11 +66,11 @@ class Thread extends Component
     {
         Yii::info('add a thread');
         if ($this->tokenValidate) {
-            if (isset($url['token'])) {
+            if (isset($url[$this->tokenParam])) {
                 Yii::error('token can not be a key in $url parameter');
                 throw new yii\base\ErrorException('请不要在url中使用token字段，token为保留字段');
             }
-            $url['token'] = $this->token;
+            $url[$this->tokenParam] = $this->token;
         }
         $this->hooks[] = $url;
     }
