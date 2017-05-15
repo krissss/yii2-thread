@@ -27,12 +27,12 @@ class Thread extends Component
      * @var bool
      */
     public $tokenValidate = true;
-    
+
     /**
      * Token param
      * @var string
      */
-    public $tokenParam = 'token';    
+    public $tokenParam = 'token';
 
     /**
      * 随意填写自己的 token
@@ -66,11 +66,11 @@ class Thread extends Component
     {
         Yii::trace('add a thread');
         if ($this->tokenValidate) {
-            if (isset($url['token'])) {
-                Yii::error('token can not be a key in $url parameter');
-                throw new yii\base\ErrorException('请不要在url中使用token字段，token为保留字段');
+            if (isset($url[$this->tokenParam])) {
+                Yii::error($this->tokenParam . 'can not be a key in $url parameter');
+                throw new yii\base\ErrorException($this->tokenParam . 'can not be a key in $url parameter');
             }
-            $url['token'] = $this->token;
+            $url[$this->tokenParam] = $this->token;
         }
         $this->hooks[] = $url;
     }
